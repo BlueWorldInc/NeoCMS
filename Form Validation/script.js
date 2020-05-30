@@ -66,23 +66,25 @@ function genderRadioExistAndChecked() {
 
 function validField(field) {
     let formValid = true;
-    if (field.input && !field.input.value) {
+    if (!field.input || !field.input.value) {
         formValid = false;
-    }
+    } else {
 
-    //Specific validation
-    if(field.name === "name") {
-        if (field.input.value.length < 4) {
-            formValid = false;
+        //Specific validation
+        if(field.name === "name") {
+            if (field.input.value.length < 4) {
+                formValid = false;
+            }
+        } else if (field.name === "password") {
+            if (field.input.value.length < 4 || field.input.value.length > 20) {
+                formValid = false;
+            }
+        } else if (field.name === "city") {
+            if (field.input.value !== "Valence" && field.input.value !== "Lyon") {
+                formValid = false;
+            }
         }
-    } else if (field.name === "password") {
-        if (field.input.value.length < 4 || field.input.value.length > 20) {
-            formValid = false;
-        }
-    } else if (field.name === "city") {
-        if (field.input.value !== "Valence" && field.input.value !== "Lyon") {
-            formValid = false;
-        }
+        
     }
 
     if (formValid) {
