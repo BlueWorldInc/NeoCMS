@@ -23,16 +23,19 @@
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" name="name" id="name" class="form-control">
+                        <small style="display: none" id="nameHelp" class="text-danger">Must be at least 4 characters long.</small>
                     </div>
-
+                    
                     <div class="form-group">
                         <label for="password">Password</label>
                         <input type="password" name="password" id="password" class="form-control">
+                        <small style="display: none" id="passwordHelp" class="text-danger">Must be 4-20 characters long.</small>
                     </div>
-
+                    
                     <div class="form-group">
                         <label for="city">City</label>
                         <input type="text" name="city" id="city" class="form-control">
+                        <small style="display: none" id="cityHelp" class="text-danger">Must be a valid city.</small>
                     </div>
 
                     <div class="form-group">
@@ -45,6 +48,7 @@
                             <input type="radio" name="gender" id="female" value="female" class="form-check-input">
                             <label for="female" class="form-check-label">Female</label>
                         </div>
+                        <small style="display: none" id="genderHelp" class="text-danger">Must be checked.</small>
                     </div>
 
                     <div class="form-group">
