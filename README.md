@@ -15,36 +15,36 @@ Another cool thing (but that start to become an other project) will be to make a
 
 Feature that need to be included:
 
--Form validation: front.
+	-Form validation: front.
 
--Form validation: back.
+	-Form validation: back.
 
--Login system with password (hash (md5?) and salt).
+	-Login system with password (hash (md5?) and salt).
 
--Authentifiaction system.
+	-Authentifiaction system.
 
--Authorisation system.
+	-Authorisation system.
 
--Making a page where we can create post. (just writing texte and posting it).
+	-Making a page where we can create post. (just writing texte and posting it).
 
--Making the editor to create the post to edit the style of the text.
+	-Making the editor to create the post to edit the style of the text.
 
--Possibility to modify the text.
+	-Possibility to modify the text.
 
--Making possibility to add commentary.
+	-Making possibility to add commentary.
 
--An admin panel which can edit the contents.
+	-An admin panel which can edit the contents.
 
--Which can change "right of users".
+	-Which can change "right of users".
 
--A statistics page, which show user statistique like which page is visited.
+	-A statistics page, which show user statistique like which page is visited.
 
--Advanced (thus don't need to be included to be accepted as finished):
+	-Advanced (thus don't need to be included to be accepted as finished):
 
-	-A payment system (linked to something like Stripe).
-	
-	-Possibility to integrate wordpress template.
-	
-	-A WYSIWIG editor.
+		-A payment system (linked to something like Stripe).
 
--A page for choosing template (pre-made simple template, made by myself).
+		-Possibility to integrate wordpress template.
+
+		-A WYSIWIG editor.
+
+	-A page for choosing template (pre-made simple template, made by myself).
