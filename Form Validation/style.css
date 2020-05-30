@@ -1,0 +1,19 @@
+html,body {
+    background-color: blue;
+    height: 100%;
+    margin: 0
+}
+
+.formValidationContainer {
+    height: 100%;
+    /* background-color: red; */
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    /* background-color: yellow; */
+    padding: 5em;
+}
