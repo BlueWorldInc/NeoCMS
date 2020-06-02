@@ -166,11 +166,47 @@
                     </div>
                     <?php
                     if ($_SERVER["REQUEST_METHOD"] == "POST" && $formIsValid) {
-                        echo "Your input are: <br><br>";
-                        echo "Name: $name<br>";
-                        echo "Email: $email<br>";
-                        echo "City: $city<br>";
-                        echo "Gender: $gender<br>";
+
+                        $mysql_servername = "localhost";
+                        $mysql_username = "neocms";
+                        $mysql_password = "neocmspassword";
+                        $mysql_dbname = "neocmsdb";
+                        $mysql_tablename = "cmsusercomplete";
+
+                        //Create connection
+                        $connection = new mysqli($mysql_servername, $mysql_username, $mysql_password, $mysql_dbname);
+
+                        //Check connection
+                        if ($connection->connect_error) {
+                            die("<div class='error'> Connection failed: " . $connection->connect_error . "</div>");
+                        } else {
+                            echo "<div class='success'> Connected succesfully </div>";
+                        }
+
+                        // SQL Query
+                        
+                        $sqlQuery = "insert into " . $mysql_tablename . " (username, password, email, city, gender) VALUES ("
+                        ."'".$name."'".
+                        ', '
+                        ."'".$password."'".
+                        ', '
+                        ."'".$email."'".
+                        ', '
+                        ."'".$city."'".
+                        ', '
+                        ."'".$gender."'".
+                        ")";
+
+                        //Try to execute the query
+                        if ($connection->query($sqlQuery) === TRUE) {
+                            echo "<br> <div class='success'> New record created successfully </div>";
+                            $last_id = $connection->insert_id;
+                            echo "<br> Last inserted ID is: " . $last_id;
+                            header("Location: action.php");
+                        } else {
+                            echo "<br> div class='error'> Error: " . $sqlQuery . "<br>" . $connection->error . "</div>";
+                        }
+
                     }
                     ?>
                 </div>

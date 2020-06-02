@@ -11,7 +11,7 @@
 
     <?php
     echo "Bonjour ";
-    echo ($_POST['name']);
+    // echo ($_POST['name']);
     echo ",<br>";
     echo "Je vais afficher les résultats du formulaire dans cette page.";
     ?>
