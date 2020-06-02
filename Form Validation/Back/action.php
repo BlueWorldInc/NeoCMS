@@ -10,6 +10,11 @@
 <body>
 
     <?php
+
+    function hello($name) {
+        echo "hello ".$name;
+    }
+
     echo "Bonjour ";
     // echo ($_POST['name']);
     echo ",<br>";

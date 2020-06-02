@@ -16,16 +16,10 @@
     require "lib/password.php"; //is required to execute password hash because php version is lesser than 5.5 
     // define variables
     $name = "";
-    $email = "";
     $password = "";
-    $city = "";
-    $gender = "";
 
     $nameError = "";
-    $emailError = "";
     $passwordError = "";
-    $cityError = "";
-    $genderError = "";
 
     $formIsValid = true;
 
@@ -54,36 +48,6 @@
             }
         }
 
-        if (empty($_POST["city"])) {
-            $cityError = "City is required";
-            $formIsValid = false;
-        } else {
-            $city = cleanInput($_POST["city"]);
-            if ($city != "Valence" && $city != "Lyon") {
-                $cityError = "Must be a valid city.";
-                $formIsValid = false;
-            }
-        }
-
-        if (empty($_POST["email"])) {
-            $emailError = "Email is required";
-            $formIsValid = false;
-        } else {
-            $email = cleanInput($_POST["email"]);
-        }
-
-        if (empty($_POST["gender"])) {
-            $genderError = "Gender is required";
-            $formIsValid = false;
-        } else {
-            $gender = cleanInput($_POST["gender"]);
-            if ($gender != "Male" && $gender != "Female") {
-                $cityError = "Gender must be correct.";
-                $formIsValid = false;
-            }
-        }
-
-        // $email = cleanInput($_POST["email"]);
     }
 
     function cleanInput($input) {
@@ -106,17 +70,13 @@
         return md5($password);
     }
 
-    function secureHashPassword($password) {
-        return password_hash($password, PASSWORD_DEFAULT);
-    }
-
     ?>
 
     <div class="formValidationContainer container">
         <div class="card bg-light col-md-offset-3 col-md-6">
-            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" id="register-form" novalidate="novalidate">
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" id="connection-form" novalidate="novalidate">
 
-                <h2>Registration form</h2>
+                <h2>Connection</h2>
                 <?php
                 if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     if (!$formIsValid) {
@@ -143,38 +103,11 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="text" name="email" id="email" class="form-control" value="<?php echo $email ?>">
-                        <small style="display: none" id="emailHelp" class="text-danger">Is Required and must be a valid email.</small>
-                        <small class="error"><?php echo $emailError ?></small>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="city">City</label>
-                        <input type="text" name="city" id="city" class="form-control" value="<?php echo $city ?>">
-                        <small style="display: none" id="cityHelp" class="text-danger">Is Required and be a valid city (Lyon or Valence).</small>
-                        <small class="error"><?php echo $cityError ?></small>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="gender">Gender</label>
-                        <div class="form-check">
-                            <input type="radio" name="gender" id="male" value="Male" class="form-check-input" <?php if (isset($gender) && $gender == "Male") echo "checked"?>>
-                            <label for="male" class="form-check-label">Male</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="radio" name="gender" id="female" value="Female" class="form-check-input" <?php if (isset($gender) && $gender == "Female") echo "checked"?>>
-                            <label for="female" class="form-check-label">Female</label>
-                        </div>
-                        <small style="display: none" id="genderHelp" class="text-danger">Must be checked.</small>
-                        <small class="error"><?php echo $genderError ?></small>
-                    </div>
-
-                    <div class="form-group">
                         <input type="submit" name="submit" value="Submit" class="btn btn-primary">
                     </div>
+                    
                     <?php
-                    if ($_SERVER["REQUEST_METHOD"] == "POST" && $formIsValid) {
+                    // if ($_SERVER["REQUEST_METHOD"] == "POST" && $formIsValid) {
 
                         $mysql_servername = "localhost";
                         $mysql_username = "neocms";
@@ -194,35 +127,34 @@
 
                         // SQL Query
                         
-                        $sqlQuery = "insert into " . $mysql_tablename . " (username, password, email, city, gender) VALUES ("
-                        ."'".$name."'".
-                        ', '
-                        ."'".secureHashPassword($password)."'".
-                        ', '
-                        ."'".$email."'".
-                        ', '
-                        ."'".$city."'".
-                        ', '
-                        ."'".$gender."'".
-                        ")";
-
-                        //Try to execute the query
-                        if ($connection->query($sqlQuery) === TRUE) {
-                            echo "<br> <div class='success'> New record created successfully </div>";
-                            $last_id = $connection->insert_id;
-                            echo "<br> Last inserted ID is: " . $last_id;
-                            header("Location: action.php");
+                        // $sqlQuery = "select * from" . $mysql_tablename . " where username=".$name;
+                        $sqlQuery = "select * from " . $mysql_tablename . " where username='".$name."'";
+                        $result = $connection->query($sqlQuery);
+                        // Try to get the data for username
+                        if ($result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+                                echo "<br>".$password;
+                                echo "<br>".$row["password"];
+                                echo "<br>end";
+                                // if ($row["password"] == notSecureHashPassword($password)) {
+                                if (password_verify($password, $row["password"])) {
+                                    echo "<div class='success'> password is correct </div>";
+                                } else {
+                                    echo "<div class='error'> password is incorrect </div>";
+                                }
+                                echo "id: " . $row["id"] . " - UserName : " .$row["username"] . "<br>";
+                            }
                         } else {
-                            echo "<br> div class='error'> Error: " . $sqlQuery . "<br>" . $connection->error . "</div>";
+                            echo "<br> 0 Results in the dabatase for the query";
                         }
 
-                    }
+                    // }
                     ?>
                 </div>
             </form>
         </div>
     </div>
-    <script src="script.js"></script>
+    <script src="connection_script.js"></script>
 </body>
 
 </html>
