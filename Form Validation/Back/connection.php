@@ -11,8 +11,8 @@
 </head>
 
 <body>
-
     <?php
+    include("includes/menu.php");
     session_start();
 
     // if (empty($_SESSION['count'])) {

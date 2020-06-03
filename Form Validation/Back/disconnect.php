@@ -13,7 +13,7 @@
 <body>
 
     <?php
-
+    include("includes/menu.php");
     session_start();
     if (empty($_SESSION['connected'])) {
         $_SESSION['connected'] = false;

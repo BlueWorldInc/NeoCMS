@@ -18,22 +18,15 @@
     if (empty($_SESSION['connected'])) {
         $_SESSION['connected'] = false;
     }
-    // var_dump($_COOKIE);
-    // var_dump($_SESSION);
-    // var_dump(SID);
-    // echo "la" . htmlspecialchars(SID)."la<br>";
-    // echo session_id();
 
     if ($_SESSION['connected']) {
 
         echo "<div class='container formValidationContainer card bg-light col-md-offset-3 col-md-6'>";
         echo "<p>Bonjour ";
-        // echo ($_POST['name']);
         echo ",<br>";
-        echo "Connection réussi.</p>";
-        echo "<p> Bonjour visiteur, vous avez vu cette page ";
-        echo $_SESSION['count'];
-        echo " fois. </p>";
+        echo "Bienvenue dans l'espace membre.</p>";
+        echo "<br>Vous pouvez maintenant visualiser le contenue de la page.";
+        echo '<img src="res/panorama-3629120_1920.jpg" alt="Corn Field" width="600" height="300">';
     } else {
         echo "Vous avez besoin de vous connectez pour visualisez cette page.";
         echo "<br><a href='connection.php'><button>Connection</button></a>";

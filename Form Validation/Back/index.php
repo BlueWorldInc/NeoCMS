@@ -13,6 +13,7 @@
 <body>
 
     <?php
+    include("includes/menu.php");
     require "lib/password.php"; //is required to execute password hash because php version is lesser than 5.5 
     // define variables
     $name = "";
