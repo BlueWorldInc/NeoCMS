@@ -13,6 +13,18 @@
 <body>
 
     <?php
+    session_start();
+
+    // if (empty($_SESSION['count'])) {
+    //     $_SESSION['count'] = 1;
+    //  } else {
+    //     $_SESSION['count']++;
+    // }
+
+    if (empty($_SESSION['connected'])) {
+        $_SESSION['connected'] = false;
+    }
+
     require "lib/password.php"; //is required to execute password hash because php version is lesser than 5.5 
     // define variables
     $name = "";
@@ -71,7 +83,9 @@
     }
 
     ?>
-
+    <p>
+    Bonjour visiteur, vous avez vu cette page <?php echo $_SESSION['count']; ?> fois.
+    </p>
     <div class="formValidationContainer container">
         <div class="card bg-light col-md-offset-3 col-md-6">
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" id="connection-form" novalidate="novalidate">
@@ -139,6 +153,8 @@
                                 // if ($row["password"] == notSecureHashPassword($password)) {
                                 if (password_verify($password, $row["password"])) {
                                     echo "<div class='success'> password is correct </div>";
+                                    $_SESSION['connected'] = true;
+                                    header("Location: connection_success.php");
                                 } else {
                                     echo "<div class='error'> password is incorrect </div>";
                                 }
