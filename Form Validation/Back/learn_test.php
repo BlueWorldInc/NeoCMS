@@ -6,9 +6,9 @@
 <body>
 
 <?php
-    require "action.php";
+    // require "action.php";
     echo "Bonjour, je suis un script PHP !";
-    hello("york");
+    // hello("york");
 ?>
 
 </body>

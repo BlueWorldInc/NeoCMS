@@ -26,7 +26,7 @@
         echo ",<br>";
         echo "Bienvenue dans l'espace membre.</p>";
         echo "<br>Vous pouvez maintenant visualiser le contenue de la page.";
-        echo '<img src="res/panorama-3629120_1920.jpg" alt="Corn Field" width="600" height="300">';
+        echo '<img src="res/field.jpg" alt="Corn Field" width="600" height="300">';
     } else {
         echo "Vous avez besoin de vous connectez pour visualisez cette page.";
         echo "<br><a href='connection.php'><button>Connection</button></a>";
