@@ -10,5 +10,6 @@
     <li></i><a href="connection.php"><i class="fa fa-fw fa-search"></i> Connection</a></li>
     <li><a href="disconnect.php"><i class="fa fa-fw fa-envelope"></i> Deconnection</a></li>
     <li><a href="member_area.php"><i class="fa fa-fw fa-user"></i> Espace membre</a></li>
+    <li><a href="editor.php"><i class="fa fa-etsy"></i> Editor</a></li>
   </ul>
 </div>

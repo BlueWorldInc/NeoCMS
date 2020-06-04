@@ -14,6 +14,23 @@ html,body {
     align-items: center;
 }
 
+.welcomeText {
+    text-align: center;
+}
+
+.textEditorGroup {
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    padding: 0em;
+}
+
+.textEditor {
+    resize:none;
+}
+
+
 form {
     /* background-color: yellow; */
     padding: 5em;
