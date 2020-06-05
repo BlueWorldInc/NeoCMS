@@ -1,0 +1,30 @@
+html,body {
+    /* height: 100%; */
+    /* margin: 0; */
+}
+
+.welcomeText {
+    text-align: center;
+}
+
+.textEditorGroup {
+    /* height: 100%; */
+    /* display: flex; */
+    /* flex-flow: column; */
+    /* align-items: center; */
+    padding: 5em;
+}
+
+
+form {
+    /* background-color: yellow; */
+    padding: 5em;
+}
+
+.error {
+    color: red;
+}
+
+.success {
+    color: green;
+}
