@@ -29,10 +29,10 @@
             $submitedTextError = "Text is required";
             $formIsValid = false;
         } else {
-            var_dump($_POST["textArea"]);
-            var_dump(mb_strlen($_POST["textArea"], "UTF-8"));
-            if (mb_strlen($_POST["textArea"], "UTF-8") > 1000) {
-                $submitedTextError = "Submitted text is too long, it need to be less than 1000 characters.";
+            // var_dump($_POST["textArea"]);
+            // var_dump(mb_strlen(cleanInput($_POST["textArea"]), "UTF-8"));
+            if (mb_strlen(cleanInput($_POST["textArea"]), "UTF-8") > 5000) {
+                $submitedTextError = "Submitted text is too long, it need to be less than 5000 characters.";
                 $formIsValid = false;
             } else {
                 $submitedText = $_POST["textArea"];
@@ -41,6 +41,13 @@
         }
     }
 
+    function cleanInput($input)
+    {
+        $input = str_replace(array("\r\n"), '\n', $input);
+        $input = trim($input);
+        $input = stripslashes($input);
+        return $input;
+    }
 
 
     if ($_SESSION['connected']) {
@@ -54,7 +61,7 @@
                 <small class="success"><?php echo $submitedTextSuccess ?></small>
                 <div class="form-group">
                     <label for="textArea">Editeur de texte</label>
-                    <textarea name="textArea" class="form-control textEditor" id="textArea" rows="19" cols="150"></textarea>
+                    <textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" name="textArea" class="form-control textEditor" id="textArea" rows="19" cols="150"></textarea>
                 </div>
                 <div style='text-align:right;' class="form-group">
                     <small style="display: none; float: left;" id="textEditorHelp">Is Required and be at least 4 characters long.</small>
@@ -69,6 +76,7 @@
     }
     ?>
     <?php
+
     if ($_SERVER["REQUEST_METHOD"] == "POST" && $formIsValid && $_SESSION['connected']) {
 
         $mysql_servername = "localhost";
@@ -93,12 +101,17 @@
             . "'" . $submitedText . "'" .
             ")";
 
-        //Try to execute the query
-        if ($connection->query($sqlQuery) === TRUE) {
+        $sqlQueryPrepared = $connection->prepare("INSERT INTO " . $mysql_tablename . " (post_content) VALUES (?)");
+        $sqlQueryPrepared->bind_param("s", $submitedText);
+
+
+        // Try to execute the query
+        if ($sqlQueryPrepared->execute() == TRUE) {
         } else {
-            echo "<br> div class='error'> Error: " . $sqlQuery . "<br>" . $connection->error . "</div>";
+            echo "<br> <div class='error'> Error: " . $sqlQuery . "<br>" . $connection->error . "</div>";
         }
     }
+
     ?>
     <script src="editor.js"></script>
 </body>

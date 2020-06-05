@@ -10,6 +10,7 @@ function hello() {
 
 function countTextArea() {
     let textLen = textArea.value.length;
+
     if (textLen > 0) {
         console.log(textArea.value);
         textEditorHelp.style = "display: initial; float: left; color: blue";
@@ -22,3 +23,15 @@ function countTextArea() {
         textEditorHelp.style = "display: none; float: left;";
     }
 }
+
+// function mb_strlen(str) {
+//     var len = 0;
+//     for(var i = 0; i < str.length; i++) {
+//         len += str.charCodeAt(i) < 0 || str.charCodeAt(i) > 255 ? 2 : 1;
+//     }
+//     return len;
+// }
+
+// function mb_strlen (s) {
+//     return ~-encodeURI(s).split(/%..|./).length;
+//   }
