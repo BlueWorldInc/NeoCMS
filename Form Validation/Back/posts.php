@@ -31,11 +31,11 @@
         // echo "<div class='success'> Connected succesfully </div>";
     }
 
-    echo '
-    <div class="card custom-control custom-switch">
-    <input type="checkbox" class="custom-control-input" id="cleanShow">
-    <label class="custom-control-label" for="cleanShow">Clean Show</label>
-    </div>';
+    // echo '
+    // <div class="card custom-control custom-switch">
+    // <input type="checkbox" class="custom-control-input" id="cleanShow">
+    // <label class="custom-control-label" for="cleanShow">Clean Show</label>
+    // </div>';
 
     //RETRIEVE
     $sqlQuery = "select * from " . $tablename;
@@ -60,7 +60,12 @@
 
     ?>
 
-    <script src="posts.js"></script>
+  <script>
+    <?php
+    include("includes/menu_options.js");
+    ?>
+  </script>
+    <!-- <script src="posts.js"></script> -->
 
 </body>
 

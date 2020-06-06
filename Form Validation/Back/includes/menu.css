@@ -28,4 +28,14 @@ li a:hover {
 
 li:last-child {
     border-right: none;
+    background-color: #e7e7e7;
+}
+
+.options {
+    position: relative;
+    z-index: 1;
+}
+
+.hide {
+    display: none;
 }

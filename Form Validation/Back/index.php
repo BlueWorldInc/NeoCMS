@@ -212,7 +212,7 @@
                             echo "<br> <div class='success'> New record created successfully </div>";
                             $last_id = $connection->insert_id;
                             echo "<br> Last inserted ID is: " . $last_id;
-                            header("Location: action.php");
+                            header("Location: learn/learn_action.php");
                         } else {
                             echo "<br> div class='error'> Error: " . $sqlQuery . "<br>" . $connection->error . "</div>";
                         }
