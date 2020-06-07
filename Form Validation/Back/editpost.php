@@ -15,9 +15,14 @@
     <?php
     include("includes/menu.php");
     include("connect_to_db.php");
+    if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
     $post_content = connectDb("cmspost", ($_GET['postid']));
-
+    } else {
+        $post_content = $_POST["textArea"];
+        $post_id = $_POST["postidd"];
+        updateContent("cmspost", $post_id, $post_content);
+    }
     echo "<h2 class='welcomeText'>Bienvenue sur la page d'édition de post</h2>";
     echo " <br>";
     ?>
@@ -26,6 +31,9 @@
                 <div class="form-group">
                     <label for="textArea">Editeur de texte</label>
                     <textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" name="textArea" class="form-control textEditor" id="textArea" rows="19" cols="150"><?php echo $post_content ?></textarea>
+                </div>
+                <div class="form-group" style="display:none;">
+                    <input type="text" name="postidd" value="<?php if ($_SERVER["REQUEST_METHOD"] == "GET") { echo $_GET['postid']; } else { echo $post_id;}?>">
                 </div>
                 <div style='text-align:right;' class="form-group">
                     <input type="submit" name="submit" value="Envoyer" class="btn btn-primary">
