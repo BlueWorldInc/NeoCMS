@@ -47,12 +47,13 @@
         while ($row = $result->fetch_assoc()) {
             // echo "<tr >";
             // echo "<td>";
+            $postLink = "editpost.php?postid=" . $row['id'];
             echo "<table'><tr><td><div class='cards' style='display:auto;'><div class='card bg-light'>";
             echo "<div class='post_ids' style='display:initial;'> Post id: " . $row['id'] . "<br></div>";
             echo "<div class='post_contents_tag' style='display:initial;'> Post content: <br></div><div class='post_contents'>" . $row['post_content'] . "</div><br>";
-            echo "<div class='post_dates' style='display:initial;'> Post date: " . $row['post_date'] . "<br></div>";
-            echo "<br><button type='button' style='margin-left: auto; width:10%; background-color:#e2e6ea; display:none;' class='btn btn-light edit-btn'>Edit</button><br></div></div><br></td><tr></table>";
-            echo "";
+            echo "<div class='post_dates' style='display:initial;'> Post date: " . $row['post_date'] . "<br></div><br>";
+            echo "<a class='btn btn-light edit-btn' role='button' href='$postLink' style='margin-left: auto; width:10%; background-color:#e2e6ea; display:none; text-decoration: none; color:black;'>Edit</a>";
+            echo "<br></div></div><br></td><tr></table>";
         }
         // echo "</table>";
         echo "</div>";

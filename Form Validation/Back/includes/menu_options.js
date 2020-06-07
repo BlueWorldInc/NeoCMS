@@ -97,7 +97,7 @@ if (window.location.href === "http://localhost/NEOCMS/Back/posts.php" || window.
         showDateToggle();
         showId.checked = false;
         showIdToggle();
-        showEdit.checked = false;
+        showEdit.checked = true;
         showEditToggle();
     }
 
