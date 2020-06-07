@@ -28,3 +28,14 @@ form {
 .success {
     color: green;
 }
+
+table { 
+    table-layout:fixed;
+    background-color: red;
+}
+
+td { 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    word-wrap: break-word;
+}
