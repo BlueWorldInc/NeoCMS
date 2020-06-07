@@ -8,6 +8,7 @@ if (window.location.href === "http://localhost/NEOCMS/Back/posts.php" || window.
     let cleanShow = document.querySelector("#cleanShow");
     let showId = document.querySelector("#showId");
     let showDate = document.querySelector("#showDate");
+    let showEdit = document.querySelector("#showEdit");
 
     let cards = document.querySelectorAll(".cards");
 
@@ -16,6 +17,7 @@ if (window.location.href === "http://localhost/NEOCMS/Back/posts.php" || window.
     cleanShow.addEventListener("change", cleanShowToggle);
     showId.addEventListener("change", showIdToggle);
     showDate.addEventListener("change", showDateToggle);
+    showEdit.addEventListener("change", showEditToggle);
 
     function openOptionsMenu() {
         optionsList.classList.toggle("hide");
@@ -35,6 +37,8 @@ if (window.location.href === "http://localhost/NEOCMS/Back/posts.php" || window.
             showDateToggle();
             showId.checked = false;
             showIdToggle();
+            showEdit.checked = false;
+            showEditToggle();
         } else {
             for (let card of cards) {
                 if (card.children[0].children[2].textContent.length === 0) {
@@ -61,7 +65,7 @@ if (window.location.href === "http://localhost/NEOCMS/Back/posts.php" || window.
     }
 
     function showDateToggle() {
-        console.log(cards);
+        // console.log(cards);
         if (showDate.checked) {
             for (let card of cards) {
                 card.children[0].children[4].style = "display:initial";
@@ -73,6 +77,19 @@ if (window.location.href === "http://localhost/NEOCMS/Back/posts.php" || window.
         }
     }
 
+    function showEditToggle() {
+        console.log(cards);
+        if (showEdit.checked) {
+            for (let card of cards) {
+                card.children[0].children[6].style = "margin-left: auto; width:10%; background-color:#e2e6ea; display:initial";
+            }
+        } else {
+            for (let card of cards) {
+                card.children[0].children[6].style = "margin-left: auto; width:10%; background-color:#e2e6ea; display:none";
+            }
+        }
+    }
+
     function init() {
         cleanShow.checked = true;
         cleanShowToggle();
@@ -80,6 +97,8 @@ if (window.location.href === "http://localhost/NEOCMS/Back/posts.php" || window.
         showDateToggle();
         showId.checked = false;
         showIdToggle();
+        showEdit.checked = false;
+        showEditToggle();
     }
 
     init();

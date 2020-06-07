@@ -29,13 +29,8 @@ form {
     color: green;
 }
 
-table { 
-    table-layout:fixed;
-    background-color: red;
-}
-
-td { 
-    overflow: hidden; 
-    text-overflow: ellipsis; 
-    word-wrap: break-word;
+.outer-block {
+    display: grid;
+    gap: 0.5em;
+    grid-template-columns: repeat(2, 1fr);
 }

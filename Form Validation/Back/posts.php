@@ -43,17 +43,18 @@
     if ($result->num_rows > 0) {
         $actual_row_number = 1;
         echo "<div class='textEditorGroup'>";
-        echo "<table style='width:150%;'>";
+        // echo "<table style='width:150%;'>";
         while ($row = $result->fetch_assoc()) {
-            echo "<tr >";
-            echo "<td>";
-            echo "<div class='cards' style='display:auto;'><div class='card bg-light'>";
+            // echo "<tr >";
+            // echo "<td>";
+            echo "<table'><tr><td><div class='cards' style='display:auto;'><div class='card bg-light'>";
             echo "<div class='post_ids' style='display:initial;'> Post id: " . $row['id'] . "<br></div>";
             echo "<div class='post_contents_tag' style='display:initial;'> Post content: <br></div><div class='post_contents'>" . $row['post_content'] . "</div><br>";
             echo "<div class='post_dates' style='display:initial;'> Post date: " . $row['post_date'] . "<br></div>";
-            echo "<br></div></td><td><button style=''>Edit</button><br></div></td></tr>";
+            echo "<br><button type='button' style='margin-left: auto; width:10%; background-color:#e2e6ea; display:none;' class='btn btn-light edit-btn'>Edit</button><br></div></div><br></td><tr></table>";
             echo "";
         }
+        // echo "</table>";
         echo "</div>";
     } else {
         echo "<br> 0 Results in the dabatase for the query";

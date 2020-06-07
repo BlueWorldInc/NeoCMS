@@ -26,6 +26,10 @@
           <input type="checkbox" class="custom-control-input" id="showDate">
           <label class="custom-control-label" for="showDate">Show Date</label>
         </div>
+        <div style="padding: 10px; user-select: none;" class="custom-control custom-switch">
+          <input type="checkbox" class="custom-control-input" id="showEdit">
+          <label class="custom-control-label" for="showEdit">Show Edit</label>
+        </div>
       </div>
     </li>
   </ul>
