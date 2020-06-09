@@ -15,6 +15,6 @@
     <div class="lok">aaaalmakaro</div>
     <div class="lok">aaaalmakaro</div>
     <button onclick="doRichEditCommand('bold')">B</button>
-    <script src="iframe.js"></script>
+    <script src="learn_iframe.js"></script>
 </body>
 </html>
