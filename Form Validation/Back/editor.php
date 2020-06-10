@@ -7,7 +7,7 @@
     <title>Editor</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <script src="https://cdn.tiny.cloud/1/y84gubctk4c2si9cv8fdojrw6e62qdlabmrnr1cvh3zkp4p7/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="lib/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
         tinymce.init({
             selector: '#textArea',
@@ -26,6 +26,7 @@
     ini_set("xdebug.var_display_max_data", -1);
     ini_set("xdebug.var_display_max_depth", -1);
     include("includes/menu.php");
+    include("connect_to_db.php");
     session_start();
     if (empty($_SESSION['connected'])) {
         $_SESSION['connected'] = false;
@@ -35,7 +36,29 @@
     $submitedTextSuccess = "";
     $formIsValid = true;
 
+    if ($_SERVER["REQUEST_METHOD"] == "GET") {
+        if (isset($_GET['postid'])) {
+            $submitedText = connectDb("cmspost", ($_GET['postid']));
+            // need verification if postid exist before changing mode to edit...
+            $mode = "edit";
+            $postid = $_GET['postid'];
+        } else {
+            $mode = "add";
+        }
+    }
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (isset($_POST["mode"])) {
+            $mode = $_POST["mode"];
+        } else {
+            $mode = "add";
+        }
+        if (isset($_POST["postid"])) {
+            $postid = $_POST["postid"];
+        } else {
+            $postid = null;
+        }
+        echo $mode;
+        // echo $postid;
         if (empty($_POST["textArea"])) {
             $submitedTextError = "Text is required";
             $formIsValid = false;
@@ -72,11 +95,15 @@
                 <small class="success"><?php echo $submitedTextSuccess ?></small>
                 <div class="form-group">
                     <label for="textArea">Editeur de texte</label>
-                    <textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" name="textArea" class="form-control textEditor" id="textArea" rows="19" cols="150"></textarea>
+                    <textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" name="textArea" class="form-control textEditor" id="textArea" rows="19" cols="150"><?php echo $submitedText ?></textarea>
                 </div>
                 <div style='text-align:right;' class="form-group">
                     <small style="display: none; float: left;" id="textEditorHelp">Is Required and be at least 4 characters long.</small>
-                    <input type="submit" name="submit" value="Envoyer" class="btn btn-primary">
+                    <div class="form-group" style="display:none;">
+                        <input type="text" name="mode" value="<?php echo $mode ?>">
+                        <input type="text" name="postid" value="<?php echo $postid ?>">
+                    </div>
+                    <input type="submit" name="submit" value="<?php if (isset($mode) && $mode == "edit") {echo "Editer"; } else { echo "Envoyer";} ?>" class="btn btn-primary">
                 </div>
             </form>
         </div>
@@ -89,6 +116,10 @@
     <?php
 
     if ($_SERVER["REQUEST_METHOD"] == "POST" && $formIsValid && $_SESSION['connected']) {
+
+        if ($mode == "edit") {
+            updateContent("cmspost", $postid, $submitedText);
+        } else {
 
         $mysql_servername = "localhost";
         $mysql_username = "neocms";
@@ -103,7 +134,8 @@
         if ($connection->connect_error) {
             die("<div class='error'> Connection failed: " . $connection->connect_error . "</div>");
         } else {
-            echo "<div class='success'> Connected succesfully </div>";
+            echo "<div class='success'> Connecteds succesfully </div>";
+            echo "hey";
         }
 
         // SQL Query
@@ -118,9 +150,12 @@
 
         // Try to execute the query
         if ($sqlQueryPrepared->execute() == TRUE) {
+            echo "<div class='success'> Connected succesfully </div>";
         } else {
             echo "<br> <div class='error'> Error: " . $sqlQuery . "<br>" . $connection->error . "</div>";
         }
+    }
+
     }
 
     ?>

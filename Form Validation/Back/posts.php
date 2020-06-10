@@ -47,7 +47,7 @@
         while ($row = $result->fetch_assoc()) {
             // echo "<tr >";
             // echo "<td>";
-            $postLink = "editpost.php?postid=" . $row['id'];
+            $postLink = "editor.php?postid=" . $row['id'];
             echo "<table'><tr><td><div class='cards' style='display:auto;'><div class='card bg-light'>";
             echo "<div class='post_ids' style='display:initial;'> Post id: " . $row['id'] . "<br></div>";
             echo "<div class='post_contents_tag' style='display:initial;'> Post content: <br></div><div class='post_contents'>" . $row['post_content'] . "</div><br>";
