@@ -1,6 +1,6 @@
 console.log("Page location is " + window.location.href);
 
-if (window.location.href === "http://localhost/NEOCMS/Back/posts.php" || window.location.href === "http://localhost/NEOCMS/Back/posts.php#") {
+if (window.location.href === "http://localhost/NEOCMS/Back/posts.php" || window.location.href === "http://localhost/NEOCMS/Back/posts.php#" || true) {
 
 
     let optionsMenu = document.querySelector(".optionsMenu");

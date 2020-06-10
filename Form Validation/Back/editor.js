@@ -5,7 +5,7 @@ console.log();
 
 function hello() {
     console.log(textArea.value.length);
-    
+
 }
 
 function countTextArea() {
@@ -35,3 +35,10 @@ function countTextArea() {
 // function mb_strlen (s) {
 //     return ~-encodeURI(s).split(/%..|./).length;
 //   }
+
+tinymce.settings.width = window.innerWidth * 90 / 100;
+window.addEventListener("resize", resizeEditor);
+function resizeEditor() {
+    let tox = document.querySelector(".tox");
+    tox.style.width = (window.innerWidth * 90 / 100) + "px";
+}

@@ -7,6 +7,17 @@
     <title>Editor</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://cdn.tiny.cloud/1/y84gubctk4c2si9cv8fdojrw6e62qdlabmrnr1cvh3zkp4p7/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: '#textArea',
+            language: 'fr_FR',
+            width: 200,
+            branding: false,
+            resize:false
+        });
+
+    </script>
 </head>
 
 <body>
@@ -52,7 +63,7 @@
 
     if ($_SESSION['connected']) {
     ?>
-        <h2 class="welcomeText">
+        <h2 id="abse" class="welcomeText">
             Bienvenue sur la page de l'editeur !
         </h2>
         <div class='textEditorGroup card'>
