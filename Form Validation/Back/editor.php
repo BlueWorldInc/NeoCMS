@@ -57,7 +57,7 @@
         } else {
             $postid = null;
         }
-        echo $mode;
+        // echo $mode;
         // echo $postid;
         if (empty($_POST["textArea"])) {
             $submitedTextError = "Text is required";
@@ -126,6 +126,10 @@
         $mysql_password = "neocmspassword";
         $mysql_dbname = "neocmsdb";
         $mysql_tablename = "cmspost";
+            
+        //Several people misread this as a question about how to store passwords in a database. That is wrong. It is about how to store the password that lets you get to the database.
+        //The usual solution is to move the password out of source-code into a configuration file. Then leave administration and securing that configuration file up to your system administrators. That way developers do not need to know anything about the production passwords, and there is no record of the password in your source-control.
+
 
         //Create connection
         $connection = new mysqli($mysql_servername, $mysql_username, $mysql_password, $mysql_dbname);
