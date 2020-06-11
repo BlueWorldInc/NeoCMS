@@ -21,8 +21,10 @@ function getImageFiles($files) {
     $imageFiles = array();
     $imageFilesExtensions = array("jpg", "jpeg", "png", "bmp");
     for ($i = 0; $i < count($files); $i++) {
-        if (in_array(strtolower(pathinfo($files[$i])['extension']), $imageFilesExtensions)) {
-            array_push($imageFiles, $files[$i]);
+        if (isset(pathinfo($files[$i])['extension'])) {
+            if (in_array(strtolower(pathinfo($files[$i])['extension']), $imageFilesExtensions)) {
+                array_push($imageFiles, $files[$i]);
+            }
         }
     }
     return $imageFiles;
@@ -54,10 +56,19 @@ function printGalery($imageFiles) {
 }
 
 function printUploadBox() {
-    echo "<div class='card bg-dark uploadPicBox'>";
-    echo "Veuillez uploader une image ";
-    echo "<button>Choisir une image</button>";
-    echo "</div>";
+?>
+
+    <div id='uploadPicBoxContainer' class='card bg-dark container'>
+        <form action="res/upload/upload_picture.php" method="post" enctype="multipart/form-data">
+            <div class='uploadPicBox'>
+                <label> Veuillez uploader une image :  </label><br>
+                <input type='file' id='pictureUpload' name='pictureUpload'>
+                <br><br><input type="submit" value="Upload Image" name="submit">
+            </div>
+        </form>
+    </div>
+
+<?php
 }
 
 printGalery($imagesFiles);

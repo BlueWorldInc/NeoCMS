@@ -11,7 +11,10 @@
 }
 
 .uploadPicBox {
-    display: none;
     padding: 5px;
     color: white;
+}
+
+#uploadPicBoxContainer {
+    display: none;
 }

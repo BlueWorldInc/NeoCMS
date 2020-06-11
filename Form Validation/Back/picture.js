@@ -2,7 +2,7 @@ let showGaleryBtn = document.querySelector("#showGaleryBtn");
 let uploadPicBtn = document.querySelector("#uploadPicBtn");
 
 let galeryContainer = document.querySelector(".galeryContainer");
-let uploadPicBox = document.querySelector(".uploadPicBox");
+let uploadPicBox = document.querySelector("#uploadPicBoxContainer");
 
 showGaleryBtn.addEventListener("click", showGalery);
 uploadPicBtn.addEventListener("click", showUploadPicBox);
@@ -22,5 +22,5 @@ function hideUploadPicBox() {
 
 function showUploadPicBox() {
     hideGalery();
-    uploadPicBox.style.display = "initial";
+    uploadPicBox.style.display = "grid";
 }
