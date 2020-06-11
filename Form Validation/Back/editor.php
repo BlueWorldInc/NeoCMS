@@ -85,6 +85,7 @@
 
 
     if ($_SESSION['connected']) {
+        include("picture.php");
     ?>
         <h2 id="abse" class="welcomeText">
             Bienvenue sur la page de l'editeur !
